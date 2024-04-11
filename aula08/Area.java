@@ -8,7 +8,7 @@ public class Area {
 
     public boolean posValida(int x, int y, int deslocamento, Direcao direcao) {
         if(direcao == Direcao.SUL) {
-            return (x + deslocamento <= maxX);
+            return (y + deslocamento <= maxY);
         }
         return false;
     }
