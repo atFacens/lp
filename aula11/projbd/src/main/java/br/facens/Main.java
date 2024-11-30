@@ -1,33 +1,38 @@
 package br.facens;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import br.facens.dao.ClienteDAO;
+import br.facens.model.Cliente;
 
 public class Main {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/bd_lp_facens";
-        String user = "profFacens";
-        String password = "aula";
 
-        Connection connection;
+    //    ClienteDAO.criarTabelaCliente();
+        
+    //    Cliente cli = new Cliente(1, "Marcelo", "marcelo@email.com");
 
-        try {
-            System.out.println("Iniciando a conexão...");
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Conectado com sucesso!");
+    //     boolean inserido = ClienteDAO.inserirCliente(cli);
 
-            String sql = "create table tb_cliente (id int, name varchar(150), email varchar(100));";
+    //     if(inserido) {
+    //         System.out.println("Inserido com sucesso");
+    //     } else {
+    //         System.out.println("Não foi possível inserir");
+    //     }
 
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
+        Cliente cliente = ClienteDAO.buscarCliente(1);
 
-            statement.close();
-            connection.close();
-            System.out.println("Desconectado com sucesso!");
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
+        if(cliente != null) {
+            System.out.println(cliente);
+        }else {
+            System.out.println("Cliente não encontrado.");
         }
         
+        // boolean apagou = ClienteDAO.apagarCliente(2);
+
+        // if(apagou) {
+        //     System.out.println("Cliente apagado");
+        // }else {
+        //     System.out.println("Cliente não encontrado.");
+        // }
+
     }
 }
